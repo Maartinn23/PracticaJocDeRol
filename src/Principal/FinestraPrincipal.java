@@ -31,8 +31,10 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         JPanel cardPanel = new JPanel(cardLayout);
         
         PanellPrincipal panellPrincipal = new PanellPrincipal(cardLayout,cardPanel);
+        PanellSecundari panellSecundari = new PanellSecundari(cardLayout,cardPanel);
         
         cardPanel.add(panellPrincipal, "panellPrincipal");
+        cardPanel.add(panellSecundari, "panellSecundari");
 
         
         this.setLayout(new BorderLayout());
@@ -70,7 +72,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         barraSuperior.setLayout(barraSuperiorLayout);
         barraSuperiorLayout.setHorizontalGroup(
             barraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1762, Short.MAX_VALUE)
+            .addGap(0, 1759, Short.MAX_VALUE)
         );
         barraSuperiorLayout.setVerticalGroup(
             barraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
