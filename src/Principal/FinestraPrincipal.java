@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package practicagestorjocrolmartin;
+package Principal;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.sql.SQLException;
 import javax.swing.JPanel;
 
 /**
