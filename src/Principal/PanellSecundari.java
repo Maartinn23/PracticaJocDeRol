@@ -132,6 +132,8 @@ public class PanellSecundari extends javax.swing.JPanel {
         textBotoAfegir = new javax.swing.JLabel();
         botoEditar = new javax.swing.JPanel();
         textBotoEditar = new javax.swing.JLabel();
+        botoCambiarFinestraAnterior = new javax.swing.JLabel();
+        botoCambiarFinestraSeguent = new javax.swing.JLabel();
         scrollTaulaHabilitats = new javax.swing.JScrollPane();
         taulaEntitats = new javax.swing.JTable();
         titolFinestra = new javax.swing.JLabel();
@@ -164,7 +166,7 @@ public class PanellSecundari extends javax.swing.JPanel {
             .addGroup(botoEliminarLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(textBotoEliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         botoEliminarLayout.setVerticalGroup(
             botoEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +198,7 @@ public class PanellSecundari extends javax.swing.JPanel {
             .addGroup(botoAfegirLayout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addComponent(textBotoAfegir)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         botoAfegirLayout.setVerticalGroup(
             botoAfegirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,28 +240,68 @@ public class PanellSecundari extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
         );
 
+        botoCambiarFinestraAnterior.setFont(new java.awt.Font("Rubik", 0, 24)); // NOI18N
+        botoCambiarFinestraAnterior.setText("<-- Taula anterior");
+        botoCambiarFinestraAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoCambiarFinestraAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraAnteriorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraAnteriorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraAnteriorMouseExited(evt);
+            }
+        });
+
+        botoCambiarFinestraSeguent.setFont(new java.awt.Font("Rubik", 0, 24)); // NOI18N
+        botoCambiarFinestraSeguent.setText("Taula següent -->");
+        botoCambiarFinestraSeguent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoCambiarFinestraSeguent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraSeguentMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraSeguentMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botoCambiarFinestraSeguentMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout seccioLateralLayout = new javax.swing.GroupLayout(seccioLateral);
         seccioLateral.setLayout(seccioLateralLayout);
         seccioLateralLayout.setHorizontalGroup(
             seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(seccioLateralLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botoAfegir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botoEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botoEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botoAfegir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botoEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, seccioLateralLayout.createSequentialGroup()
+                        .addGroup(seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botoCambiarFinestraSeguent)
+                            .addComponent(botoCambiarFinestraAnterior))
+                        .addGap(27, 27, 27)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         seccioLateralLayout.setVerticalGroup(
             seccioLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, seccioLateralLayout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botoAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200))
+                .addGap(62, 62, 62)
+                .addComponent(botoCambiarFinestraSeguent)
+                .addGap(18, 18, 18)
+                .addComponent(botoCambiarFinestraAnterior)
+                .addGap(58, 58, 58))
         );
 
         taulaEntitats.setModel(new javax.swing.table.DefaultTableModel(
@@ -285,23 +327,22 @@ public class PanellSecundari extends javax.swing.JPanel {
 
         titolFinestra.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         titolFinestra.setForeground(new java.awt.Color(51, 102, 255));
-        titolFinestra.setText("Taula Habilitats");
+        titolFinestra.setText("Taula Habilitat");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollTaulaHabilitats)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addGap(615, 615, 615)
+                        .addComponent(titolFinestra))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(621, 621, 621)
-                        .addComponent(titolFinestra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(seccioLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(scrollTaulaHabilitats, javax.swing.GroupLayout.PREFERRED_SIZE, 1539, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(seccioLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +350,7 @@ public class PanellSecundari extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(titolFinestra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(scrollTaulaHabilitats, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
@@ -339,9 +380,35 @@ public class PanellSecundari extends javax.swing.JPanel {
         botoEliminar.setBackground(new java.awt.Color(187, 187, 187));
     }//GEN-LAST:event_botoEliminarMouseExited
 
+    private void botoCambiarFinestraSeguentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraSeguentMouseEntered
+        botoCambiarFinestraSeguent.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_botoCambiarFinestraSeguentMouseEntered
+
+    private void botoCambiarFinestraSeguentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraSeguentMouseExited
+        botoCambiarFinestraSeguent.setForeground(new java.awt.Color(0, 0, 0));
+    }//GEN-LAST:event_botoCambiarFinestraSeguentMouseExited
+
+    private void botoCambiarFinestraAnteriorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraAnteriorMouseEntered
+        botoCambiarFinestraAnterior.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_botoCambiarFinestraAnteriorMouseEntered
+
+    private void botoCambiarFinestraAnteriorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraAnteriorMouseExited
+        botoCambiarFinestraAnterior.setForeground(new java.awt.Color(0, 0, 0));
+    }//GEN-LAST:event_botoCambiarFinestraAnteriorMouseExited
+
+    private void botoCambiarFinestraAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraAnteriorMouseClicked
+        cardLayout.show(cardPanel, "panellPrincipal");
+    }//GEN-LAST:event_botoCambiarFinestraAnteriorMouseClicked
+
+    private void botoCambiarFinestraSeguentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraSeguentMouseClicked
+        cardLayout.show(cardPanel, "panellTerciari");
+    }//GEN-LAST:event_botoCambiarFinestraSeguentMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botoAfegir;
+    private javax.swing.JLabel botoCambiarFinestraAnterior;
+    private javax.swing.JLabel botoCambiarFinestraSeguent;
     private javax.swing.JPanel botoEditar;
     private javax.swing.JPanel botoEliminar;
     private javax.swing.JScrollPane scrollTaulaHabilitats;

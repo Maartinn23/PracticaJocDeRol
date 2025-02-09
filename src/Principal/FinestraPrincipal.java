@@ -32,9 +32,11 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         
         PanellPrincipal panellPrincipal = new PanellPrincipal(cardLayout,cardPanel);
         PanellSecundari panellSecundari = new PanellSecundari(cardLayout,cardPanel);
+        PanellTerciari panellTerciari= new PanellTerciari(cardLayout,cardPanel);
         
         cardPanel.add(panellPrincipal, "panellPrincipal");
         cardPanel.add(panellSecundari, "panellSecundari");
+        cardPanel.add(panellTerciari, "panellTerciari");
 
         
         this.setLayout(new BorderLayout());
