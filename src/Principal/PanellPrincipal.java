@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import static javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN;
@@ -25,17 +27,18 @@ import taules.Classe;
  */
 public class PanellPrincipal extends javax.swing.JPanel {
 
-    CardLayout cardLayout;
-    JPanel cardPanel;
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
 
-    Connection conn = null;
-
-    public PanellPrincipal(CardLayout cardLayout, JPanel cardPanel) {
+    private Connection conn = null;
+    
+    FinestraPrincipal finestraPrincipal;
+    
+    public PanellPrincipal(FinestraPrincipal finestraPrincipal,CardLayout cardLayout, JPanel cardPanel) {
         initComponents();
 
         this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
-
 
         carregaTaulaBBDD();
         taulaEntitats.setEnabled(false);
@@ -161,6 +164,9 @@ public class PanellPrincipal extends javax.swing.JPanel {
         botoAfegir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botoAfegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoAfegir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoAfegirMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botoAfegirMouseEntered(evt);
             }
@@ -389,6 +395,11 @@ public class PanellPrincipal extends javax.swing.JPanel {
     private void botoCambiarFinestraSeguentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraSeguentMouseExited
         botoCambiarFinestraSeguent.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_botoCambiarFinestraSeguentMouseExited
+
+    private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
+        FinestraEmergent finestraEmergent = new FinestraEmergent(finestraPrincipal, true);
+        finestraEmergent.setVisible(true);
+    }//GEN-LAST:event_botoAfegirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

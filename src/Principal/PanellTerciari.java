@@ -21,10 +21,10 @@ import taules.Habilitat;
  */
 public class PanellTerciari extends javax.swing.JPanel {
 
-    CardLayout cardLayout;
-    JPanel cardPanel;
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
 
-    Connection conn = null;
+    private Connection conn = null;
 
     public PanellTerciari(CardLayout cardLayout, JPanel cardPanel) {
         initComponents();

@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 public class FinestraPrincipal extends javax.swing.JFrame {
 
    
-    int xFinestra;
-    int yFinestra;
+    private int xFinestra;
+    private int yFinestra;
     
     
     
@@ -30,7 +30,7 @@ public class FinestraPrincipal extends javax.swing.JFrame {
         CardLayout cardLayout = new CardLayout();
         JPanel cardPanel = new JPanel(cardLayout);
         
-        PanellPrincipal panellPrincipal = new PanellPrincipal(cardLayout,cardPanel);
+        PanellPrincipal panellPrincipal = new PanellPrincipal(this,cardLayout,cardPanel);
         PanellSecundari panellSecundari = new PanellSecundari(cardLayout,cardPanel);
         PanellTerciari panellTerciari= new PanellTerciari(cardLayout,cardPanel);
         
