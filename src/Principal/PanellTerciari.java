@@ -11,9 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import taules.Classe;
-import taules.Enemic;
-import taules.Habilitat;
+import Taules.Classe;
+import Taules.Enemic;
+import Taules.Habilitat;
 
 /**
  *
@@ -25,6 +25,8 @@ public class PanellTerciari extends javax.swing.JPanel {
     private JPanel cardPanel;
 
     private Connection conn = null;
+
+    private static FinestraPrincipal finestraPrincipal;
 
     public PanellTerciari(CardLayout cardLayout, JPanel cardPanel) {
         initComponents();
@@ -62,7 +64,7 @@ public class PanellTerciari extends javax.swing.JPanel {
             try {
                 while (rs.next()) {
                     Enemic e = new Enemic(rs.getInt(1), rs.getString(2), rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9),rs.getInt(10));
+                            rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
 
                     enemic.add(e);
                 }
@@ -74,7 +76,7 @@ public class PanellTerciari extends javax.swing.JPanel {
 
             DefaultTableModel dtm = new DefaultTableModel();
             taulaEntitats.setModel(dtm);
-            dtm.setColumnIdentifiers(new Object[]{"Id", "Nom", "Descripcio", "Nivell","Salut_Maxima","Atac","Defensa","Magia","Defensa_Magica","Velocitat"});
+            dtm.setColumnIdentifiers(new Object[]{"Id", "Nom", "Descripcio", "Nivell", "Salut_Maxima", "Atac", "Defensa", "Magia", "Defensa_Magica", "Velocitat"});
             taulaEntitats.getColumnModel().getColumn(0).setPreferredWidth(20);
             taulaEntitats.getColumnModel().getColumn(1).setPreferredWidth(20);
             taulaEntitats.getColumnModel().getColumn(2).setPreferredWidth(20);
@@ -95,6 +97,8 @@ public class PanellTerciari extends javax.swing.JPanel {
                         e.getId(),
                         e.getNom(),
                         e.getDescripcio(),
+                        e.getNivell(),
+                        e.getSalut_maxima(),
                         e.getAtac(),
                         e.getDefensa(),
                         e.getMagia(),
@@ -120,15 +124,15 @@ public class PanellTerciari extends javax.swing.JPanel {
                         stmt.close();
 
                         conn.close();
-                    } 
+                    }
 
-                } catch( Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } 
-        }  catch (SQLException ex) {
-                    Logger.getLogger(PanellTerciari.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PanellTerciari.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -190,6 +194,9 @@ public class PanellTerciari extends javax.swing.JPanel {
         botoAfegir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botoAfegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoAfegir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoAfegirMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botoAfegirMouseEntered(evt);
             }
@@ -297,17 +304,17 @@ public class PanellTerciari extends javax.swing.JPanel {
 
         taulaEntitats.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "nom", "descripcio", "script"
+                "id", "nom", "descripcio", "nivell", "salut_maxima", "atac", "defensa", "magia", "defensa_magica", "velocitat"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -382,6 +389,11 @@ public class PanellTerciari extends javax.swing.JPanel {
     private void botoCambiarFinestraAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraAnteriorMouseClicked
         cardLayout.show(cardPanel, "panellSecundari");
     }//GEN-LAST:event_botoCambiarFinestraAnteriorMouseClicked
+
+    private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
+        FinestraEmergentEnemic finestraEmergentEnemic = new FinestraEmergentEnemic(finestraPrincipal, true, this);
+        finestraEmergentEnemic.setVisible(true);
+    }//GEN-LAST:event_botoAfegirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

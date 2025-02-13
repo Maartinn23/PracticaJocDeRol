@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import static javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN;
 import javax.swing.table.DefaultTableModel;
-import taules.Classe;
+import Taules.Classe;
 
 /**
  *
@@ -31,10 +31,10 @@ public class PanellPrincipal extends javax.swing.JPanel {
     private JPanel cardPanel;
 
     private Connection conn = null;
-    
+
     FinestraPrincipal finestraPrincipal;
-    
-    public PanellPrincipal(FinestraPrincipal finestraPrincipal,CardLayout cardLayout, JPanel cardPanel) {
+
+    public PanellPrincipal(CardLayout cardLayout, JPanel cardPanel ) {
         initComponents();
 
         this.cardLayout = cardLayout;
@@ -64,7 +64,7 @@ public class PanellPrincipal extends javax.swing.JPanel {
             }
 
             ArrayList<Classe> classe = new ArrayList<>();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM PUBLIC.CLASSE");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM CLASSE");
             ResultSet rs = ps.executeQuery();
 
             try {
@@ -397,7 +397,7 @@ public class PanellPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_botoCambiarFinestraSeguentMouseExited
 
     private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
-        FinestraEmergent finestraEmergent = new FinestraEmergent(finestraPrincipal, true);
+        FinestraEmergentClasse finestraEmergent = new FinestraEmergentClasse(finestraPrincipal, true, this);
         finestraEmergent.setVisible(true);
     }//GEN-LAST:event_botoAfegirMouseClicked
 

@@ -11,8 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import taules.Classe;
-import taules.Habilitat;
+import Taules.Classe;
+import Taules.Habilitat;
 
 /**
  *
@@ -24,6 +24,8 @@ public class PanellSecundari extends javax.swing.JPanel {
     JPanel cardPanel;
 
     Connection conn = null;
+
+    FinestraPrincipal finestraPrincipal;
 
     public PanellSecundari(CardLayout cardLayout, JPanel cardPanel) {
         initComponents();
@@ -109,15 +111,15 @@ public class PanellSecundari extends javax.swing.JPanel {
                         stmt.close();
 
                         conn.close();
-                    } 
+                    }
 
-                } catch( Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } 
-        }  catch (SQLException ex) {
-                    Logger.getLogger(PanellSecundari.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PanellSecundari.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -180,6 +182,9 @@ public class PanellSecundari extends javax.swing.JPanel {
         botoAfegir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botoAfegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoAfegir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoAfegirMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botoAfegirMouseEntered(evt);
             }
@@ -403,6 +408,11 @@ public class PanellSecundari extends javax.swing.JPanel {
     private void botoCambiarFinestraSeguentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoCambiarFinestraSeguentMouseClicked
         cardLayout.show(cardPanel, "panellTerciari");
     }//GEN-LAST:event_botoCambiarFinestraSeguentMouseClicked
+
+    private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
+        FinestraEmergentHabilitat finestraEmergentHabilitat = new FinestraEmergentHabilitat(finestraPrincipal,true,this);
+        finestraEmergentHabilitat.setVisible(true);
+    }//GEN-LAST:event_botoAfegirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

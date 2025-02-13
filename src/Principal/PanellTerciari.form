@@ -168,6 +168,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botoAfegirMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botoAfegirMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botoAfegirMouseExited"/>
           </Events>
@@ -281,15 +282,51 @@
         <Component class="javax.swing.JTable" name="taulaEntitats">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="10" rowCount="4">
                 <Column editable="true" title="id" type="java.lang.Integer"/>
                 <Column editable="true" title="nom" type="java.lang.String"/>
                 <Column editable="true" title="descripcio" type="java.lang.String"/>
-                <Column editable="true" title="script" type="java.lang.String"/>
+                <Column editable="true" title="nivell" type="java.lang.Integer"/>
+                <Column editable="true" title="salut_maxima" type="java.lang.Integer"/>
+                <Column editable="true" title="atac" type="java.lang.Integer"/>
+                <Column editable="true" title="defensa" type="java.lang.Integer"/>
+                <Column editable="true" title="magia" type="java.lang.Integer"/>
+                <Column editable="true" title="defensa_magica" type="java.lang.Integer"/>
+                <Column editable="true" title="velocitat" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

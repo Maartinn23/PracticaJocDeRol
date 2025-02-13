@@ -10,18 +10,21 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FinestraEmergent extends javax.swing.JDialog {
+public class FinestraEmergentHabilitat extends javax.swing.JDialog {
 
     private int xFinestra;
     private int yFinestra;
     private static Connection conn;
-
-    public FinestraEmergent(java.awt.Frame parent, boolean modal) {
+    
+    private static PanellSecundari panellSecundari;
+    public FinestraEmergentHabilitat(java.awt.Frame parent, boolean modal, PanellSecundari panellSecundari  ) {
         super(parent, modal);
         setUndecorated(true);
         setBackground(new java.awt.Color(153, 255, 255));
+        
+        
         initComponents();
-
+        this.panellSecundari = panellSecundari;
     }
 
     /**
@@ -38,18 +41,10 @@ public class FinestraEmergent extends javax.swing.JDialog {
         campTextNom = new javax.swing.JTextField();
         titolDescripcio = new javax.swing.JLabel();
         campTextDescripcio = new javax.swing.JTextField();
-        titolTextEscalatSalut = new javax.swing.JLabel();
-        campTextEscalatSalut = new javax.swing.JTextField();
-        titolEscalatAtac = new javax.swing.JLabel();
-        campTextEscalatAtac = new javax.swing.JTextField();
-        campTextEscalatDefensaMagica = new javax.swing.JTextField();
-        titolEscalatDefensaMagica = new javax.swing.JLabel();
-        titolEscalatVelocitat = new javax.swing.JLabel();
-        campTextEscalatVelocitat = new javax.swing.JTextField();
+        titolScript = new javax.swing.JLabel();
+        campTextScript = new javax.swing.JTextField();
         botoAfegir = new javax.swing.JPanel();
         textBotoAfegir = new javax.swing.JLabel();
-        campTextEscalatDefensa = new javax.swing.JTextField();
-        titolEscalatDefensa = new javax.swing.JLabel();
         barraSuperior = new javax.swing.JPanel();
         botoTancar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -83,53 +78,17 @@ public class FinestraEmergent extends javax.swing.JDialog {
         jPanel1.add(campTextDescripcio);
         campTextDescripcio.setBounds(10, 130, 300, 22);
 
-        titolTextEscalatSalut.setText("Escalat salut");
-        jPanel1.add(titolTextEscalatSalut);
-        titolTextEscalatSalut.setBounds(10, 170, 190, 16);
+        titolScript.setText("Script");
+        jPanel1.add(titolScript);
+        titolScript.setBounds(10, 170, 210, 16);
 
-        campTextEscalatSalut.addActionListener(new java.awt.event.ActionListener() {
+        campTextScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campTextEscalatSalutActionPerformed(evt);
+                campTextScriptActionPerformed(evt);
             }
         });
-        jPanel1.add(campTextEscalatSalut);
-        campTextEscalatSalut.setBounds(10, 190, 180, 22);
-
-        titolEscalatAtac.setText("Escalat atac");
-        jPanel1.add(titolEscalatAtac);
-        titolEscalatAtac.setBounds(10, 230, 180, 16);
-
-        campTextEscalatAtac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campTextEscalatAtacActionPerformed(evt);
-            }
-        });
-        jPanel1.add(campTextEscalatAtac);
-        campTextEscalatAtac.setBounds(10, 250, 180, 22);
-
-        campTextEscalatDefensaMagica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campTextEscalatDefensaMagicaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(campTextEscalatDefensaMagica);
-        campTextEscalatDefensaMagica.setBounds(380, 130, 180, 22);
-
-        titolEscalatDefensaMagica.setText("Escalat defensa magica");
-        jPanel1.add(titolEscalatDefensaMagica);
-        titolEscalatDefensaMagica.setBounds(380, 110, 180, 16);
-
-        titolEscalatVelocitat.setText("Escalat velocitat");
-        jPanel1.add(titolEscalatVelocitat);
-        titolEscalatVelocitat.setBounds(380, 170, 180, 16);
-
-        campTextEscalatVelocitat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campTextEscalatVelocitatActionPerformed(evt);
-            }
-        });
-        jPanel1.add(campTextEscalatVelocitat);
-        campTextEscalatVelocitat.setBounds(380, 190, 180, 22);
+        jPanel1.add(campTextScript);
+        campTextScript.setBounds(10, 190, 300, 22);
 
         botoAfegir.setBackground(new java.awt.Color(187, 187, 187));
         botoAfegir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -168,18 +127,6 @@ public class FinestraEmergent extends javax.swing.JDialog {
 
         jPanel1.add(botoAfegir);
         botoAfegir.setBounds(380, 290, 251, 63);
-
-        campTextEscalatDefensa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campTextEscalatDefensaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(campTextEscalatDefensa);
-        campTextEscalatDefensa.setBounds(380, 70, 180, 22);
-
-        titolEscalatDefensa.setText("Escalat defensa");
-        jPanel1.add(titolEscalatDefensa);
-        titolEscalatDefensa.setBounds(380, 50, 180, 16);
 
         barraSuperior.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         barraSuperior.setOpaque(false);
@@ -269,44 +216,18 @@ public class FinestraEmergent extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campTextDescripcioActionPerformed
 
-    private void campTextEscalatSalutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextEscalatSalutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campTextEscalatSalutActionPerformed
-
-    private void campTextEscalatAtacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextEscalatAtacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campTextEscalatAtacActionPerformed
-
-    private void campTextEscalatDefensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextEscalatDefensaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campTextEscalatDefensaActionPerformed
-
-    private void campTextEscalatDefensaMagicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextEscalatDefensaMagicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campTextEscalatDefensaMagicaActionPerformed
-
-    private void campTextEscalatVelocitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextEscalatVelocitatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campTextEscalatVelocitatActionPerformed
-
     private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
 
         String nom = campTextNom.getText();
         String descripcio = campTextDescripcio.getText();
+        String script = campTextScript.getText();
+        
+        
+        consultaInsert(nom, descripcio, script);
+        
+        panellSecundari.carregaTaulaBBDD();
+        
 
-        String escalatSalutString = campTextEscalatSalut.getText();
-        String escalatAtacString = campTextEscalatAtac.getText();
-        String escalatDefensaString = campTextEscalatDefensa.getText();
-        String escalatDefensaMagicaString = campTextEscalatDefensaMagica.getText();
-        String escalatVelocitatString = campTextEscalatVelocitat.getText();
-
-        int escalatSalut = Integer.parseInt(escalatSalutString);
-        int escalatAtac = Integer.parseInt(escalatAtacString);
-        int escalatDefensa = Integer.parseInt(escalatDefensaString);
-        int escalatDefensaMagica = Integer.parseInt(escalatDefensaMagicaString);
-        int escalatVelocitat = Integer.parseInt(escalatVelocitatString);
-
-        consultaInsert(nom, descripcio, escalatSalut, escalatAtac, escalatDefensa, escalatDefensaMagica, escalatVelocitat);
     }//GEN-LAST:event_botoAfegirMouseClicked
 
     private void botoAfegirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseEntered
@@ -348,6 +269,10 @@ public class FinestraEmergent extends javax.swing.JDialog {
         botoTancar.setBackground(new java.awt.Color(255, 0, 0));
     }//GEN-LAST:event_botoTancarformMouseExited
 
+    private void campTextScriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campTextScriptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campTextScriptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,21 +290,23 @@ public class FinestraEmergent extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FinestraEmergentHabilitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FinestraEmergentHabilitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FinestraEmergentHabilitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FinestraEmergentHabilitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FinestraEmergent dialog = new FinestraEmergent(new javax.swing.JFrame(), true);
+                FinestraEmergentHabilitat dialog = new FinestraEmergentHabilitat(new javax.swing.JFrame(), true, panellSecundari);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -391,9 +318,7 @@ public class FinestraEmergent extends javax.swing.JDialog {
         });
     }
 
-    public void consultaInsert(String nom, String descripcio, int escalatSalut, int escalatAtac,
-            int escalatDefensa, int escalatDefensaMagica, int velocitat
-    ) {
+    public void consultaInsert(String nom, String descripcio, String script) {
         try {
 
             try {
@@ -412,19 +337,15 @@ public class FinestraEmergent extends javax.swing.JDialog {
 
             PreparedStatement stmt = null;
 
-            String insertClasse = "INSERT INTO CLASSE (nom, descripcio, escalat_salut, escalat_atac, escalat_defensa, escalat_defensa_magica, "
-                    + "escalat_velocitat) VALUES (?,?,?,?,?,?,?)";
+            String insertClasse = "INSERT INTO HABILITAT (nom, descripcio, script) VALUES (?,?,?)";
 
             try {
                 stmt = conn.prepareStatement(insertClasse);
 
                 stmt.setString(1, nom);
                 stmt.setString(2, descripcio);
-                stmt.setInt(3, escalatSalut);
-                stmt.setInt(4, escalatAtac);
-                stmt.setInt(5, escalatDefensa);
-                stmt.setInt(6, escalatDefensaMagica);
-                stmt.setInt(7, velocitat);
+                stmt.setString(3, script);
+                
 
                 stmt.execute();
                 
@@ -447,21 +368,13 @@ public class FinestraEmergent extends javax.swing.JDialog {
     private javax.swing.JPanel botoAfegir;
     private javax.swing.JPanel botoTancar;
     private javax.swing.JTextField campTextDescripcio;
-    private javax.swing.JTextField campTextEscalatAtac;
-    private javax.swing.JTextField campTextEscalatDefensa;
-    private javax.swing.JTextField campTextEscalatDefensaMagica;
-    private javax.swing.JTextField campTextEscalatSalut;
-    private javax.swing.JTextField campTextEscalatVelocitat;
     private javax.swing.JTextField campTextNom;
+    private javax.swing.JTextField campTextScript;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel textBotoAfegir;
     private javax.swing.JLabel titolDescripcio;
-    private javax.swing.JLabel titolEscalatAtac;
-    private javax.swing.JLabel titolEscalatDefensa;
-    private javax.swing.JLabel titolEscalatDefensaMagica;
-    private javax.swing.JLabel titolEscalatVelocitat;
     private javax.swing.JLabel titolNom;
-    private javax.swing.JLabel titolTextEscalatSalut;
+    private javax.swing.JLabel titolScript;
     // End of variables declaration//GEN-END:variables
 }
