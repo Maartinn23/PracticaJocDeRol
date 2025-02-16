@@ -20,21 +20,27 @@ import javax.swing.JPasswordField;
 import static javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN;
 import javax.swing.table.DefaultTableModel;
 import Taules.Classe;
+import Utilities.Actualitzable;
+import Utilities.Visualitzable;
 
 /**
  *
  * @author alumnegs
  */
-public class PanellPrincipal extends javax.swing.JPanel {
+public class PanellPrincipal extends javax.swing.JPanel implements Actualitzable, Visualitzable {
 
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
     private Connection conn = null;
 
-    FinestraPrincipal finestraPrincipal;
+    private FinestraPrincipal finestraPrincipal;
 
-    public PanellPrincipal(CardLayout cardLayout, JPanel cardPanel ) {
+    private String tipusConsulta;
+    
+    private String id;
+
+    public PanellPrincipal(CardLayout cardLayout, JPanel cardPanel) {
         initComponents();
 
         this.cardLayout = cardLayout;
@@ -199,6 +205,9 @@ public class PanellPrincipal extends javax.swing.JPanel {
         botoEditar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoEditarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botoEditarMouseEntered(evt);
             }
@@ -231,6 +240,9 @@ public class PanellPrincipal extends javax.swing.JPanel {
         botoEliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botoEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botoEliminarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botoEliminarMouseEntered(evt);
             }
@@ -330,7 +342,7 @@ public class PanellPrincipal extends javax.swing.JPanel {
 
         titolFinestra.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         titolFinestra.setForeground(new java.awt.Color(51, 102, 255));
-        titolFinestra.setText("Taula Classe");
+        titolFinestra.setText(" Classe");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -397,9 +409,27 @@ public class PanellPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_botoCambiarFinestraSeguentMouseExited
 
     private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
-        FinestraEmergentClasse finestraEmergent = new FinestraEmergentClasse(finestraPrincipal, true, this);
+        tipusConsulta = "Insert";
+        FinestraEmergentClasse finestraEmergent = new FinestraEmergentClasse(finestraPrincipal, true, this, id,tipusConsulta);
         finestraEmergent.setVisible(true);
     }//GEN-LAST:event_botoAfegirMouseClicked
+
+    private void botoEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoEliminarMouseClicked
+
+        tipusConsulta = "Delete";
+        FinestraEmergentDeleteUpdate finestraEmergentDelete = new FinestraEmergentDeleteUpdate(finestraPrincipal, true, this, this,
+                titolFinestra.getText().trim(), tipusConsulta);
+        finestraEmergentDelete.setVisible(true);
+
+    }//GEN-LAST:event_botoEliminarMouseClicked
+
+    private void botoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoEditarMouseClicked
+        tipusConsulta = "Update";
+        FinestraEmergentDeleteUpdate finestraEmergentDelete = new FinestraEmergentDeleteUpdate(finestraPrincipal, true, this, this,
+                titolFinestra.getText().trim(), tipusConsulta);
+        finestraEmergentDelete.setVisible(true);
+        
+    }//GEN-LAST:event_botoEditarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -415,4 +445,18 @@ public class PanellPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel textBotoEliminar1;
     private javax.swing.JLabel titolFinestra;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualitzarTaula() {
+
+        carregaTaulaBBDD();
+    }
+
+    @Override
+    public void visualitzarFinestra(String id) {
+        tipusConsulta = "Update";
+        FinestraEmergentClasse finestraEmergent = new FinestraEmergentClasse(finestraPrincipal, true, this, id,tipusConsulta);
+        finestraEmergent.setVisible(true);
+    }
+
 }

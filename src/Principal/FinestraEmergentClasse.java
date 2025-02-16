@@ -15,16 +15,29 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
     private int xFinestra;
     private int yFinestra;
     private static Connection conn;
-    
+
+    private String id;
+
+    private String tipusConsulta;
+
     private static PanellPrincipal panellPrincipal;
-    public FinestraEmergentClasse(java.awt.Frame parent, boolean modal, PanellPrincipal panellPrincipal  ) {
+
+    public FinestraEmergentClasse(java.awt.Frame parent, boolean modal, PanellPrincipal panellPrincipal, String id, String tipusConsulta) {
         super(parent, modal);
         setUndecorated(true);
         setBackground(new java.awt.Color(153, 255, 255));
-        
-        
+
         initComponents();
         this.panellPrincipal = panellPrincipal;
+
+        this.id = id;
+
+        this.tipusConsulta = tipusConsulta;
+
+        if (tipusConsulta.equals("Update")) {
+            consultaSelect(id);
+        }
+
     }
 
     /**
@@ -49,7 +62,7 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
         titolEscalatDefensaMagica = new javax.swing.JLabel();
         titolEscalatVelocitat = new javax.swing.JLabel();
         campTextEscalatVelocitat = new javax.swing.JTextField();
-        botoAfegir = new javax.swing.JPanel();
+        botoConfirmar = new javax.swing.JPanel();
         textBotoAfegir = new javax.swing.JLabel();
         campTextEscalatDefensa = new javax.swing.JTextField();
         titolEscalatDefensa = new javax.swing.JLabel();
@@ -134,43 +147,43 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
         jPanel1.add(campTextEscalatVelocitat);
         campTextEscalatVelocitat.setBounds(380, 190, 180, 22);
 
-        botoAfegir.setBackground(new java.awt.Color(187, 187, 187));
-        botoAfegir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botoAfegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botoAfegir.addMouseListener(new java.awt.event.MouseAdapter() {
+        botoConfirmar.setBackground(new java.awt.Color(187, 187, 187));
+        botoConfirmar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botoConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botoAfegirMouseClicked(evt);
+                botoConfirmarMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botoAfegirMouseEntered(evt);
+                botoConfirmarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botoAfegirMouseExited(evt);
+                botoConfirmarMouseExited(evt);
             }
         });
 
         textBotoAfegir.setFont(new java.awt.Font("Manjari Thin", 1, 18)); // NOI18N
-        textBotoAfegir.setText("Afegeix");
+        textBotoAfegir.setText("Confirmar");
 
-        javax.swing.GroupLayout botoAfegirLayout = new javax.swing.GroupLayout(botoAfegir);
-        botoAfegir.setLayout(botoAfegirLayout);
-        botoAfegirLayout.setHorizontalGroup(
-            botoAfegirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(botoAfegirLayout.createSequentialGroup()
+        javax.swing.GroupLayout botoConfirmarLayout = new javax.swing.GroupLayout(botoConfirmar);
+        botoConfirmar.setLayout(botoConfirmarLayout);
+        botoConfirmarLayout.setHorizontalGroup(
+            botoConfirmarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(botoConfirmarLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(textBotoAfegir)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
-        botoAfegirLayout.setVerticalGroup(
-            botoAfegirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botoAfegirLayout.createSequentialGroup()
+        botoConfirmarLayout.setVerticalGroup(
+            botoConfirmarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botoConfirmarLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(textBotoAfegir)
                 .addGap(16, 16, 16))
         );
 
-        jPanel1.add(botoAfegir);
-        botoAfegir.setBounds(380, 290, 251, 63);
+        jPanel1.add(botoConfirmar);
+        botoConfirmar.setBounds(380, 290, 251, 63);
 
         campTextEscalatDefensa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +271,7 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
         );
 
         pack();
@@ -292,7 +305,7 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campTextEscalatVelocitatActionPerformed
 
-    private void botoAfegirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseClicked
+    private void botoConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoConfirmarMouseClicked
 
         String nom = campTextNom.getText();
         String descripcio = campTextDescripcio.getText();
@@ -308,21 +321,28 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
         int escalatDefensa = Integer.parseInt(escalatDefensaString);
         int escalatDefensaMagica = Integer.parseInt(escalatDefensaMagicaString);
         int escalatVelocitat = Integer.parseInt(escalatVelocitatString);
-        
-        consultaInsert(nom, descripcio, escalatSalut, escalatAtac, escalatDefensa, escalatDefensaMagica, escalatVelocitat);
-        
-        panellPrincipal.carregaTaulaBBDD();
-        
 
-    }//GEN-LAST:event_botoAfegirMouseClicked
+        if (tipusConsulta.equals("Insert")) {
 
-    private void botoAfegirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseEntered
-        botoAfegir.setBackground(new java.awt.Color(204, 204, 204));
-    }//GEN-LAST:event_botoAfegirMouseEntered
+            consultaInsert(nom, descripcio, escalatSalut, escalatAtac, escalatDefensa, escalatDefensaMagica, escalatVelocitat);
 
-    private void botoAfegirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoAfegirMouseExited
-        botoAfegir.setBackground(new java.awt.Color(187, 187, 187));
-    }//GEN-LAST:event_botoAfegirMouseExited
+            panellPrincipal.carregaTaulaBBDD();
+        } else {
+            consultaUpdate(id, nom, descripcio, escalatSalut, escalatAtac, escalatDefensa, escalatDefensaMagica, escalatVelocitat);
+            panellPrincipal.carregaTaulaBBDD();
+
+        }
+
+
+    }//GEN-LAST:event_botoConfirmarMouseClicked
+
+    private void botoConfirmarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoConfirmarMouseEntered
+        botoConfirmar.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_botoConfirmarMouseEntered
+
+    private void botoConfirmarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoConfirmarMouseExited
+        botoConfirmar.setBackground(new java.awt.Color(187, 187, 187));
+    }//GEN-LAST:event_botoConfirmarMouseExited
 
     private void barraSuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraSuperiorMouseDragged
 
@@ -354,51 +374,6 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
 
         botoTancar.setBackground(new java.awt.Color(255, 0, 0));
     }//GEN-LAST:event_botoTancarformMouseExited
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergentClasse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergentClasse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergentClasse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FinestraEmergentClasse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FinestraEmergentClasse dialog = new FinestraEmergentClasse(new javax.swing.JFrame(), true, panellPrincipal);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     public void consultaInsert(String nom, String descripcio, int escalatSalut, int escalatAtac,
             int escalatDefensa, int escalatDefensaMagica, int velocitat
@@ -436,7 +411,7 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
                 stmt.setInt(7, velocitat);
 
                 stmt.execute();
-                
+
                 stmt.close();
                 conn.close();
 
@@ -446,14 +421,136 @@ public class FinestraEmergentClasse extends javax.swing.JDialog {
             }
         } catch (Throwable e) {
 
-        } 
+        }
 
     }
 
+    public void consultaSelect(String id) {
+
+        int idInt = Integer.parseInt(id);
+        String nom = null;
+        String descripcio = null;
+        int escalatSalut = 0;
+        int escalatAtac = 0;
+        int escalatDefensa = 0;
+        int escalatDefensaMagica = 0;
+        int escalatVelocitat = 0;
+
+        try {
+            try {
+                Class.forName("org.hsqldb.jdbcDriver");
+            } catch (ClassNotFoundException ex) {
+                ex.getMessage();
+            }
+            try {
+                conn = DriverManager.getConnection(
+                        "jdbc:hsqldb:file:C:/Users/domin/Documents/NetBeansProjects/PracticaGestioJocRol/DataBase/PracticaJocRol",
+                        "root",
+                        "1234");
+            } catch (SQLException ex) {
+                Logger.getLogger(PanellPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            PreparedStatement stmt = null;
+            ResultSet conjuntResultats = null;
+
+            String selectClasse = "SELECT * FROM CLASSE WHERE id = ?";
+            try {
+                stmt = conn.prepareStatement(selectClasse);
+                stmt.setInt(1, idInt);
+
+                conjuntResultats = stmt.executeQuery();
+
+                while (conjuntResultats.next()) {
+
+                    nom = conjuntResultats.getString("nom");
+                    descripcio = conjuntResultats.getString("descripcio");
+                    escalatSalut = conjuntResultats.getInt("escalat_salut");
+                    escalatAtac = conjuntResultats.getInt("escalat_atac");
+                    escalatDefensa = conjuntResultats.getInt("escalat_defensa");
+                    escalatDefensaMagica = conjuntResultats.getInt("escalat_defensa_magica");
+                    escalatVelocitat = conjuntResultats.getInt("escalat_velocitat");
+
+                }
+
+                campTextNom.setText(nom);
+                campTextDescripcio.setText(descripcio);
+
+                String escalatSalutString = String.valueOf(escalatSalut);
+                String escalatAtacString = String.valueOf(escalatAtac);
+                String escalatDefensaString = String.valueOf(escalatDefensa);
+                String escalatDefensaMagicaString = String.valueOf(escalatDefensaMagica);
+                String escalatVelocitatString = String.valueOf(escalatVelocitat);
+
+                campTextEscalatSalut.setText(escalatSalutString);
+                campTextEscalatAtac.setText(escalatAtacString);
+                campTextEscalatDefensa.setText(escalatDefensaString);
+                campTextEscalatDefensaMagica.setText(escalatDefensaMagicaString);
+                campTextEscalatVelocitat.setText(escalatVelocitatString);
+
+                conjuntResultats.close();
+                stmt.close();
+                conn.close();
+
+            } catch (SQLException e) {
+                System.out.println("Error durant l'obtencio de dades " + e.getMessage());
+
+            }
+        } catch (Throwable e) {
+
+        }
+
+    }
+
+    public void consultaUpdate(String id, String nom, String descripcio, int escalat_salut,
+            int escalat_atac, int escalat_defensa, int escalat_defensa_magica, int escalat_velocitat) {
+
+        int idInt = Integer.parseInt(id);
+
+        try {
+            try {
+                Class.forName("org.hsqldb.jdbcDriver");
+            } catch (ClassNotFoundException ex) {
+                ex.getMessage();
+            }
+            try {
+                conn = DriverManager.getConnection(
+                        "jdbc:hsqldb:file:C:/Users/domin/Documents/NetBeansProjects/PracticaGestioJocRol/DataBase/PracticaJocRol",
+                        "root",
+                        "1234");
+            } catch (SQLException ex) {
+                Logger.getLogger(PanellPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            PreparedStatement stmt = null;
+
+            String updateClasse = "UPDATE CLASSE SET nom = ?, descripcio = ?, escalat_salut = ?, escalat_atac = ?, "
+                    + "escalat_defensa = ?, escalat_defensa_magica = ?,escalat_velocitat = ? WHERE id = ?";
+            try {
+                stmt = conn.prepareStatement(updateClasse);
+
+                stmt.setString(1, nom);
+                stmt.setString(2, descripcio);
+                stmt.setInt(3, escalat_salut);
+                stmt.setInt(4, escalat_atac);
+                stmt.setInt(5, escalat_defensa);
+                stmt.setInt(6, escalat_defensa_magica);
+                stmt.setInt(7, escalat_velocitat);
+                stmt.setInt(8, idInt);
+                stmt.execute();
+
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("Hi ha hagut un error en fer l’actualització: " + e);
+            }
+
+        } catch (Throwable e) {
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraSuperior;
-    private javax.swing.JPanel botoAfegir;
+    private javax.swing.JPanel botoConfirmar;
     private javax.swing.JPanel botoTancar;
     private javax.swing.JTextField campTextDescripcio;
     private javax.swing.JTextField campTextEscalatAtac;
